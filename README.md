@@ -14,7 +14,7 @@ Run `docker run --rm -it -v $PWD/cache:/var/cache/glewlwyd -p 4593:4593 rafaelhd
 
 # Testing your glewlwyd.conf
 
-Open two terminals.
+Run at the terminal:
 
 ```
 git clone https://github.com/rafaelhdr/glewlwyd-oauth2-server
