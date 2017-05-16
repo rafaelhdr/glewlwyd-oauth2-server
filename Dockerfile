@@ -68,7 +68,7 @@ RUN ldconfig && \
     mkdir -p /var/cache/glewlwyd/ && \
     mkdir -p /var/cache/glewlwyd
 
-COPY ["glewlwyd.conf", "/var/conf/glewlwyd.conf"]
+COPY ["glewlwyd.*.conf", "/var/conf/"]
 COPY ["glewlwyd.mariadb.sql", "glewlwyd.sqlite3.sql", "webapp.init.sql", "/var/scriptssql/"]
 COPY ["entrypoint.sh", "/"]
 
