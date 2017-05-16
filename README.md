@@ -46,3 +46,15 @@ Your server is running. Edit your file conf/glewlwyd.conf, and reload your appli
 # Ctrl + C
 /entrypoint.sh
 ```
+
+# TODO
+
+- Quickstart with LDAP
+- Different build for mysql/sqlite/ldap
+- Images with alpine linux
+- Custom build with environment variables
+- Check [best practises](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)
+- Automate deploy images (if possible)
+- Tests on build
+- Download binaries, instead of source-code
+- Tools + documentation for generating SSH keys and passwords
