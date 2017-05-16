@@ -20,6 +20,10 @@ mv docker-compose.mysql.yml docker-compose.yml
 docker-compose up -d
 ```
 
+Access http://localhost:4593.
+
+**Bug: MariaDB take sometime to be ready for connections. So, if your instance exit (State `Exit 2`), wait a little time, and run `docker-compose up -d` again. This will be fixed soon.**
+
 # Persisting sqlite database
 
 Run `docker run --rm -it -v $PWD/cache:/var/cache/glewlwyd -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server`
