@@ -19,7 +19,8 @@ then
 elif [ "glewlwyd.mariadb.conf" == "$CONFIGFILE" ]
 then
     # Check if mysql database exist
-    mysqlshow -h glewlwyd-oauth2-server-db -u root -ppassword "glewlwyd"
+    /wait-for-it.sh --timeout=60 glewlwyd-oauth2-server-db:3306 -- \
+                    mysqlshow -h glewlwyd-oauth2-server-db -u root -ppassword "glewlwyd"
 
     # If does not exist, raise error. So, we try to create database
     if [ ! "$?" == "0" ]

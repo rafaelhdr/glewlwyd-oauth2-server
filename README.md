@@ -6,6 +6,10 @@ This Docker image is based on [Glewlwyd Oauth 2 authentication server](https://g
 
 # Quickstart
 
+Quickstart is supposed to be used for testing. It is not for production.
+
+After creating the Quickstart, use as admin (username: *admin*, password: *password*).
+
 ## Quickstart SQLite3
 
 Run `docker run --rm -it -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server` and access http://localhost:4593.
@@ -17,12 +21,10 @@ Run `docker run --rm -it -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server` and acce
 ```
 wget https://raw.githubusercontent.com/rafaelhdr/glewlwyd-oauth2-server/master/docker-compose.mysql.yml
 mv docker-compose.mysql.yml docker-compose.yml
-docker-compose up -d
+docker-compose up
 ```
 
 Access http://localhost:4593.
-
-**Bug: MariaDB take sometime to be ready for connections. So, if your instance exit (State `Exit 2`), wait a little time, and run `docker-compose up -d` again. This will be fixed soon.**
 
 # Persisting sqlite database
 

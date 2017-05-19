@@ -90,6 +90,7 @@ RUN ldconfig && \
 COPY ["glewlwyd.*.conf", "/var/conf/"]
 COPY ["glewlwyd.mariadb.sql", "glewlwyd.sqlite3.sql", "webapp.init.sql", "/var/scriptssql/"]
 COPY ["entrypoint.sh", "/"]
+COPY ["wait-for-it.sh", "/"]
 
 EXPOSE 4593
 
