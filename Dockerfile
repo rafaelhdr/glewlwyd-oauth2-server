@@ -80,14 +80,13 @@ WORKDIR /glewlwyd
 
 # Configuration required for shared objects
 RUN ldconfig && \
-    mkdir -p /var/conf && \
+    mkdir -p /var/glewlwyd/conf && \
+    mkdir -p /var/glewlwyd/keys && \
     ln -s /glewlwyd/webapp /var/www && \
-    openssl genrsa -out private.key 4096 && \
-    openssl rsa -in private.key -outform PEM -pubout -out public.pem && \
     mkdir -p /var/cache/glewlwyd/ && \
     mkdir -p /var/cache/glewlwyd
 
-COPY ["glewlwyd.*.conf", "/var/conf/"]
+COPY ["glewlwyd.*.conf", "/var/glewlwyd/conf/"]
 COPY ["glewlwyd.mariadb.sql", "glewlwyd.sqlite3.sql", "webapp.init.sql", "/var/scriptssql/"]
 COPY ["entrypoint.sh", "/"]
 COPY ["wait-for-it.sh", "/"]

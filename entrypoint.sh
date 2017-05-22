@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Generate private/public keys, if necessary
+
+if ! [ -f "/var/glewlwyd/keys/private.key" ]
+then
+    openssl genrsa -out /var/glewlwyd/keys/private.key 4096 && \
+    openssl rsa -in /var/glewlwyd/keys/private.key -outform PEM -pubout -out /var/glewlwyd/keys/public.pem
+fi
+
 # Quickstart scripts
 
 # Quickstart for sqlite3
@@ -34,12 +42,12 @@ fi
 
 # Run application
 
-if [ -f "/var/conf/$CONFIGFILE" ]
+if [ -f "/var/glewlwyd/conf/$CONFIGFILE" ]
 then
-    /glewlwyd/src/glewlwyd --config-file=/var/conf/$CONFIGFILE
-elif [ -f "/var/conf/glewlwyd.conf" ]
+    /glewlwyd/src/glewlwyd --config-file=/var/glewlwyd/conf/$CONFIGFILE
+elif [ -f "/var/glewlwyd/conf/glewlwyd.conf" ]
 then
-    /glewlwyd/src/glewlwyd --config-file=/var/conf/glewlwyd.conf
+    /glewlwyd/src/glewlwyd --config-file=/var/glewlwyd/conf/glewlwyd.conf
 else
-    /glewlwyd/src/glewlwyd --config-file=/var/conf/glewlwyd.sqlite3.conf
+    /glewlwyd/src/glewlwyd --config-file=/var/glewlwyd/conf/glewlwyd.sqlite3.conf
 fi

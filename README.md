@@ -6,8 +6,6 @@ This Docker image is based on [Glewlwyd Oauth 2 authentication server](https://g
 
 # Quickstart
 
-Quickstart is supposed to be used for testing. It is not for production.
-
 After creating the Quickstart, use as admin (username: *admin*, password: *password*).
 
 ## Quickstart SQLite3
@@ -34,14 +32,26 @@ Access http://localhost:4593.
 
 ## Configuration file
 
-Create a file *glewlwyd.conf*, and mount as `/var/conf`. Example:
+Create a file *glewlwyd.conf*, and mount as `/var/glewlwyd/conf`. Example:
 
 ```
 mkdir conf
 wget https://raw.githubusercontent.com/rafaelhdr/glewlwyd-oauth2-server/master/glewlwyd.sqlite3.conf
 mv glewlwyd.sqlite3.conf conf/glewlwyd.conf
 # Edit your conf/glewlwyd.conf
-docker run --rm -it -v $PWD/conf:/var/conf -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server
+docker run --rm -it -v $PWD/conf:/var/glewlwyd/conf -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server
+```
+
+# Volumes
+
+`/var/glewlwyd/conf` - Store glewdlwyd.conf file (and also, examples of MariaDB and SQLite config files).
+
+`/var/glewlwyd/keys` - Store private and public key. These keys are generated on container creation. You can create by yourself with the following commands:
+
+```
+openssl genrsa -out private.key 4096 && \
+openssl rsa -in private.key -outform PEM -pubout -out public.pem
+# Copy and paste the files private.key and public.pem to your volume
 ```
 
 # TODO
@@ -54,4 +64,4 @@ docker run --rm -it -v $PWD/conf:/var/conf -p 4593:4593 rafaelhdr/glewlwyd-oauth
 - Automate deploy images (if possible)
 - Tests on build
 - Download binaries, instead of source-code
-- Tools + documentation for generating SSH keys and passwords
+- Documentation for SSH keys and password
