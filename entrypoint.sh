@@ -34,9 +34,12 @@ fi
 
 # Run application
 
-if [ -z "$CONFIGFILE" ]
+if [ -f "/var/conf/$CONFIGFILE" ]
 then
-    /glewlwyd/src/glewlwyd --config-file=/var/conf/glewlwyd.sqlite3.conf
-else
     /glewlwyd/src/glewlwyd --config-file=/var/conf/$CONFIGFILE
+elif [ -f "/var/conf/glewlwyd.conf" ]
+then
+    /glewlwyd/src/glewlwyd --config-file=/var/conf/glewlwyd.conf
+else
+    /glewlwyd/src/glewlwyd --config-file=/var/conf/glewlwyd.sqlite3.conf
 fi
