@@ -63,5 +63,4 @@ openssl rsa -in private.key -outform PEM -pubout -out public.pem
 - Check [best practises](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)
 - Automate deploy images (if possible)
 - Tests on build
-- Download binaries, instead of source-code
 - Documentation for SSH keys and password
