@@ -12,6 +12,7 @@ RUN apt-get update && \
     libsqlite3-dev \
     libconfig-dev \
     libssl-dev \
+    libgnutls28-dev \
     git \
     libtool \
     autoconf \
@@ -61,7 +62,7 @@ RUN cd /opt && \
     tar -zxvf ${ULFIUS_VERSION}.tar.gz && \
     rm ${ULFIUS_VERSION}.tar.gz && \
     cd ulfius-${ULFIUS_VERSION}/src/ && \
-    make WEBSOCKETFLAG=-DU_DISABLE_WEBSOCKET && \
+    make && \
     make install
 
 # Install Hoel
