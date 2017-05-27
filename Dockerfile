@@ -19,12 +19,12 @@ RUN apt-get update && \
     mariadb-client \
     wget
 
-ARG GLEWLWYD_VERSION=1.0.1
-ARG HOEL_VERSION=1.0.0
+ARG GLEWLWYD_VERSION=1.1
+ARG HOEL_VERSION=1.1
 ARG LIBJWT_VERSION=1.7.4
-ARG ORCANIA_VERSION=1.0.0
-ARG ULFIUS_VERSION=1.0.4
-ARG YDER_VERSION=1.0.0
+ARG ORCANIA_VERSION=1.1
+ARG ULFIUS_VERSION=2.0.1
+ARG YDER_VERSION=1.1
 
 # libtool and autoconf may be required, install them with 'sudo apt-get install libtool autoconf'
 RUN cd /opt && \
@@ -61,7 +61,7 @@ RUN cd /opt && \
     tar -zxvf ${ULFIUS_VERSION}.tar.gz && \
     rm ${ULFIUS_VERSION}.tar.gz && \
     cd ulfius-${ULFIUS_VERSION}/src/ && \
-    make && \
+    make WEBSOCKETFLAG=-DU_DISABLE_WEBSOCKET && \
     make install
 
 # Install Hoel
