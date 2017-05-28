@@ -12,6 +12,7 @@ RUN apt-get update && \
     libsqlite3-dev \
     libconfig-dev \
     libssl-dev \
+    libgnutls28-dev \
     git \
     libtool \
     autoconf \
@@ -19,12 +20,12 @@ RUN apt-get update && \
     mariadb-client \
     wget
 
-ARG GLEWLWYD_VERSION=1.0.1
-ARG HOEL_VERSION=1.0.0
+ARG GLEWLWYD_VERSION=1.1
+ARG HOEL_VERSION=1.1
 ARG LIBJWT_VERSION=1.7.4
-ARG ORCANIA_VERSION=1.0.0
-ARG ULFIUS_VERSION=1.0.4
-ARG YDER_VERSION=1.0.0
+ARG ORCANIA_VERSION=1.1
+ARG ULFIUS_VERSION=2.0.1
+ARG YDER_VERSION=1.1
 
 # libtool and autoconf may be required, install them with 'sudo apt-get install libtool autoconf'
 RUN cd /opt && \
