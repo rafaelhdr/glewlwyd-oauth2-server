@@ -14,14 +14,14 @@ Run `docker run --rm -it -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:sqlite3-q
 
 If you want to persist SQLite database, mount volume `/var/cache/glewlwyd`, as below:
 
-`docker run -it -v $PWD/cache:/var/cache/glewlwyd -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server`
+`docker run -it -v $PWD/cache:/var/cache/glewlwyd -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:sqlite3-quickstart`
 
 ## Quickstart MariaDB
 
 [Install Docker Compose](https://docs.docker.com/compose/install/). Run:
 
 ```
-wget https://raw.githubusercontent.com/rafaelhdr/glewlwyd-oauth2-server/master/mariadb/quickstart/docker-compose.mysql.yml
+wget https://raw.githubusercontent.com/rafaelhdr/glewlwyd-oauth2-server/master/mariadb/quickstart/docker-compose.yml
 docker-compose up
 ```
 
