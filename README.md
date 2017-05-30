@@ -10,7 +10,7 @@ After creating the Quickstart, use as admin (username: *admin*, password: *passw
 
 ## Quickstart SQLite3
 
-Run `docker run --rm -it -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server` and access http://localhost:4593.
+Run `docker run --rm -it -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:sqlite3-quickstart` and access http://localhost:4593.
 
 If you want to persist SQLite database, mount volume `/var/cache/glewlwyd`, as below:
 
@@ -21,8 +21,7 @@ If you want to persist SQLite database, mount volume `/var/cache/glewlwyd`, as b
 [Install Docker Compose](https://docs.docker.com/compose/install/). Run:
 
 ```
-wget https://raw.githubusercontent.com/rafaelhdr/glewlwyd-oauth2-server/master/docker-compose.mysql.yml
-mv docker-compose.mysql.yml docker-compose.yml
+wget https://raw.githubusercontent.com/rafaelhdr/glewlwyd-oauth2-server/master/mariadb/quickstart/docker-compose.mysql.yml
 docker-compose up
 ```
 
@@ -36,10 +35,10 @@ Create a file *glewlwyd.conf*, and mount as `/var/glewlwyd/conf`. Example:
 
 ```
 mkdir conf
-wget https://raw.githubusercontent.com/rafaelhdr/glewlwyd-oauth2-server/master/glewlwyd.sqlite3.conf
+wget https://raw.githubusercontent.com/rafaelhdr/glewlwyd-oauth2-server/master/sqlite3/quickstart/glewlwyd.sqlite3.conf
 mv glewlwyd.sqlite3.conf conf/glewlwyd.conf
 # Edit your conf/glewlwyd.conf
-docker run --rm -it -v $PWD/conf:/var/glewlwyd/conf -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server
+docker run --rm -it -v $PWD/conf:/var/glewlwyd/conf -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:sqlite3-quickstart
 ```
 
 # Volumes

@@ -8,13 +8,14 @@ then
     openssl rsa -in /var/glewlwyd/keys/private.key -outform PEM -pubout -out /var/glewlwyd/keys/public.pem
 fi
 
-# If required, generate config file
+# Quickstart
 
-if ! [ -f "/var/glewlwyd/conf/glewlwyd.conf" ]
+# Create database, if necessary
+sqlitefile="/var/cache/glewlwyd/glewlwyd.db"
+if ! [ -f "$sqlitefile" ]
 then
-    echo "You need to generate your own configuration file!"
-    echo "Mount a volume with file at /var/glewlwyd/conf/glewlwyd.conf"
-    echo "More information at https://github.com/rafaelhdr/glewlwyd-oauth2-server#volumes"
+    sqlite3 $sqlitefile < /var/glewlwyd/scriptssql/glewlwyd.sqlite3.sql
+    sqlite3 $sqlitefile < /var/glewlwyd/scriptssql/webapp.init.sql
 fi
 
 # Run application

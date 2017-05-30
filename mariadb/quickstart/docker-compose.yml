@@ -2,13 +2,11 @@ version: '3'
 
 services:
   glewlwyd-oauth2-server:
-    image: rafaelhdr/glewlwyd-oauth2-server:latest
+    image: rafaelhdr/glewlwyd-oauth2-server:mysql-quickstart
     ports:
       - 4593:4593
     links:
       - glewlwyd-oauth2-server-db
-    environment:
-      - CONFIGFILE=glewlwyd.mariadb.conf
 
   glewlwyd-oauth2-server-db:
     image: mariadb:10.1
