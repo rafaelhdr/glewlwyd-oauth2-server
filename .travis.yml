@@ -18,7 +18,7 @@ before_script:
   - image="rafaelhdr/glewlwyd-oauth2-server:${VERSION}-${VARIANT}${EXTENSION:+-$EXTENSION}"
 
 script:
-  - travis_retry docker build -t "$image" "${VERSION}/${EXTENSION}/."
+  - travis_retry docker build -t "$image" "${VARIANT}/${EXTENSION}/."
   - travis_retry docker push "$image"
 
 after_script:
