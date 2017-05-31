@@ -10,11 +10,11 @@ After creating the Quickstart, use as admin (username: *admin*, password: *passw
 
 ## Quickstart SQLite3
 
-Run `docker run --rm -it -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:sqlite3-quickstart` and access http://localhost:4593.
+Run `docker run --rm -it -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:1.0-sqlite3-quickstart` and access http://localhost:4593.
 
 If you want to persist SQLite database, mount volume `/var/cache/glewlwyd`, as below:
 
-`docker run -it -v $PWD/cache:/var/cache/glewlwyd -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:sqlite3-quickstart`
+`docker run -it -v $PWD/cache:/var/cache/glewlwyd -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:1.0-sqlite3-quickstart`
 
 ## Quickstart MariaDB
 
@@ -38,7 +38,7 @@ mkdir conf
 wget https://raw.githubusercontent.com/rafaelhdr/glewlwyd-oauth2-server/master/sqlite3/quickstart/glewlwyd.sqlite3.conf
 mv glewlwyd.sqlite3.conf conf/glewlwyd.conf
 # Edit your conf/glewlwyd.conf
-docker run --rm -it -v $PWD/conf:/var/glewlwyd/conf -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:sqlite3-quickstart
+docker run --rm -it -v $PWD/conf:/var/glewlwyd/conf -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:1.0-sqlite3-quickstart
 ```
 
 # Volumes

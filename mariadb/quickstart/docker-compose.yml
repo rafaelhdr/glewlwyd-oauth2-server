@@ -2,7 +2,7 @@ version: '3'
 
 services:
   glewlwyd-oauth2-server:
-    image: rafaelhdr/glewlwyd-oauth2-server:mysql-quickstart
+    image: rafaelhdr/glewlwyd-oauth2-server:1.0-mariadb-quickstart
     ports:
       - 4593:4593
     links:
