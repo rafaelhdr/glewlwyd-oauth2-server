@@ -14,7 +14,7 @@ before_install:
   - docker push rafaelhdr/glewlwyd-oauth2-server:latest
 
 before_script:
-  - cd "${VERSION}/${EXTENSION}"
+  - cd "${VARIANT}/${EXTENSION}"
   - image="rafaelhdr/glewlwyd-oauth2-server:${VERSION}-${VARIANT}${EXTENSION:+-$EXTENSION}"
 
 script:
