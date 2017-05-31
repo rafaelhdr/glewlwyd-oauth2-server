@@ -1,0 +1,25 @@
+sudo: required
+
+language: bash
+
+services: docker
+
+env:
+  - VERSION=1.0 VARIANT=sqlite3 EXTENSION=quickstart
+  - VERSION=1.0 VARIANT=mariadb EXTENSION=quickstart
+
+before_install:
+  - docker build -t rafaelhdr/glewlwyd-oauth2-server:latest .
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+  - docker push rafaelhdr/glewlwyd-oauth2-server:latest
+
+before_script:
+  - cd "${VERSION}/${EXTENSION}"
+  - image="rafaelhdr/glewlwyd-oauth2-server:${VERSION}-${VARIANT}${EXTENSION:+-$EXTENSION}"
+
+script:
+  - travis_retry docker build -t "$image" "${VERSION}/${EXTENSION}/."
+  - travis_retry docker push "$image"
+
+after_script:
+  - docker images
