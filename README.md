@@ -76,6 +76,12 @@ docker run --rm -it -v $PWD/conf:/var/glewlwyd/conf -p 4593:4593 rafaelhdr/glewl
 
 Use the secret to verify signature.
 
+## SSL/TLS
+
+OAuth 2 specifies that a secured connection is mandatory.
+
+An easy and free option is to use Let's Encrypt. Check the tutorial [Proxy with Caddy Server](https://github.com/rafaelhdr/glewlwyd-oauth2-server/blob/master/tutorials/proxy-with-caddy-server.md).
+
 # Volumes
 
 `/var/glewlwyd/conf` - Store glewdlwyd.conf file (and also, examples of MariaDB and SQLite config files).
@@ -87,6 +93,10 @@ openssl genrsa -out private.key 4096 && \
 openssl rsa -in private.key -outform PEM -pubout -out public.pem
 # Copy and paste the files private.key and public.pem to your volume
 ```
+
+# Tutorials
+
+- [Proxy with Caddy Server](https://github.com/rafaelhdr/glewlwyd-oauth2-server/blob/master/tutorials/proxy-with-caddy-server.md)
 
 # TODO
 
