@@ -2,8 +2,6 @@
 
 This Docker image is based on [Glewlwyd Oauth 2 authentication server](https://github.com/babelouest/glewlwyd).
 
-**This project is not ready for production**
-
 # Quickstart
 
 After creating the Quickstart, use as admin (username: *admin*, password: *password*).
@@ -27,19 +25,56 @@ docker-compose up
 
 Access http://localhost:4593.
 
-# Custom configuration
+# Prepare for production
 
 ## Configuration file
 
-Create a file *glewlwyd.conf*, and mount as `/var/glewlwyd/conf`. Example:
+Create a file *glewlwyd.conf* (sample [here](https://github.com/babelouest/glewlwyd/blob/master/glewlwyd.conf.sample)), and mount as `/var/glewlwyd/conf`.
+
+Example:
 
 ```
+# cd /path/to/project
 mkdir conf
 wget https://raw.githubusercontent.com/rafaelhdr/glewlwyd-oauth2-server/master/sqlite3/quickstart/glewlwyd.sqlite3.conf
 mv glewlwyd.sqlite3.conf conf/glewlwyd.conf
 # Edit your conf/glewlwyd.conf
 docker run --rm -it -v $PWD/conf:/var/glewlwyd/conf -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:1.0-sqlite3-quickstart
 ```
+
+More about configuration at https://github.com/babelouest/glewlwyd#configuration.
+
+More about volume options at [Volumes](#volumes).
+
+## Define admin username and password
+
+By default, the username and password for admin are admin/password.
+
+Access the front-end application, and after log in, edit Admin user.
+
+## Define keys or secrets
+
+By default, it generate RSA key at folder `/var/glewlwyd/keys/`.
+
+### RSA key
+
+Keep default configuration and mount folder `/var/glewlwyd/keys/`.
+
+```
+docker run --rm -it -v $PWD/keys:/var/glewlwyd/keys -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:1.0-sqlite3-quickstart
+```
+
+Keep the public key to verify signature. The private key are used to generate the token.
+
+### SHA key
+
+Edit the default configuration (check how at [Configuration file](#configuration-file)) changing `use_rsa = false`, `use_sha = false` and change your secret at `sha_secret = "secret"`. Run your instance mounting the configuration file folder.
+
+```
+docker run --rm -it -v $PWD/conf:/var/glewlwyd/conf -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:1.0-sqlite3-quickstart
+```
+
+Use the secret to verify signature.
 
 # Volumes
 
@@ -62,4 +97,3 @@ openssl rsa -in private.key -outform PEM -pubout -out public.pem
 - Check [best practises](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)
 - Automate deploy images (if possible)
 - Tests on build
-- Documentation for SSH keys and password
