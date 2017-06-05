@@ -1,4 +1,4 @@
-FROM rafaelhdr/glewlwyd-oauth2-server
+FROM rafaelhdr/glewlwyd-oauth2-server:base
 
 RUN mkdir -p /var/cache/scriptssql
 

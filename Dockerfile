@@ -2,23 +2,25 @@ FROM debian:8.8
 
 # Install required packages
 RUN apt-get update && \
-    apt-get install -y libmicrohttpd-dev \
-    libjansson-dev \
-    libcurl4-gnutls-dev \
-    uuid-dev \
-    libldap2-dev \
-    libmysqlclient-dev \
-    sqlite3 \
-    libsqlite3-dev \
-    libconfig-dev \
-    libssl-dev \
-    libgnutls28-dev \
-    git \
-    libtool \
+    apt-get install -y \
     autoconf \
+    git \
+    libcurl4-gnutls-dev \
+    libconfig-dev \
+    libjansson-dev \
+    libgnutls28-dev \
+    libldap2-dev \
+    libmicrohttpd-dev \
+    libmysqlclient-dev \
+    libsqlite3-dev \
+    libssl-dev \
+    libtool \
     make \
     mariadb-client \
-    wget
+    sqlite3 \
+    uuid-dev \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
 
 ARG GLEWLWYD_VERSION=1.1
 ARG HOEL_VERSION=1.1
@@ -36,46 +38,47 @@ RUN cd /opt && \
     autoreconf -i && \
     ./configure && \
     make && \
-    make install
+    make install && \
 
 # Install Orcania
-RUN cd /opt && \
+    cd /opt && \
     wget https://github.com/babelouest/orcania/archive/${ORCANIA_VERSION}.tar.gz && \
     tar -zxvf ${ORCANIA_VERSION}.tar.gz && \
     rm ${ORCANIA_VERSION}.tar.gz && \
     cd orcania-${ORCANIA_VERSION}/ && \
     make && \
-    make install
+    make install && \
 
 # Install Yder
-RUN cd /opt && \
+    cd /opt && \
     wget https://github.com/babelouest/yder/archive/${YDER_VERSION}.tar.gz && \
     tar -zxvf ${YDER_VERSION}.tar.gz && \
     rm ${YDER_VERSION}.tar.gz && \
     cd yder-${YDER_VERSION}/src/ && \
     make && \
-    make install
+    make install && \
 
 # Install Ulfius
-RUN cd /opt && \
+    cd /opt && \
     wget https://github.com/babelouest/ulfius/archive/${ULFIUS_VERSION}.tar.gz && \
     tar -zxvf ${ULFIUS_VERSION}.tar.gz && \
     rm ${ULFIUS_VERSION}.tar.gz && \
     cd ulfius-${ULFIUS_VERSION}/src/ && \
     make && \
-    make install
+    make install && \
 
 # Install Hoel
-RUN cd /opt && \
+    cd /opt && \
     wget https://github.com/babelouest/hoel/archive/${HOEL_VERSION}.tar.gz && \
     tar -zxvf ${HOEL_VERSION}.tar.gz && \
     rm ${HOEL_VERSION}.tar.gz && \
     cd hoel-${HOEL_VERSION}/src/ && \
     make && \
-    make install
+    make install && \
 
 # Install Glewlwyd
-RUN wget https://github.com/babelouest/glewlwyd/archive/${GLEWLWYD_VERSION}.tar.gz && \
+    cd / && \
+    wget https://github.com/babelouest/glewlwyd/archive/${GLEWLWYD_VERSION}.tar.gz && \
     tar -zxvf ${GLEWLWYD_VERSION}.tar.gz && \
     rm ${GLEWLWYD_VERSION}.tar.gz && \
     mv glewlwyd-${GLEWLWYD_VERSION}/ /glewlwyd && \

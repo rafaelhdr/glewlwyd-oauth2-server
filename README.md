@@ -104,4 +104,3 @@ openssl rsa -in private.key -outform PEM -pubout -out public.pem
 - Different build for mysql/sqlite/ldap
 - Images with alpine linux
 - Custom build with environment variables
-- Check [best practises](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/)
