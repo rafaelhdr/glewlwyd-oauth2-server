@@ -22,7 +22,7 @@ RUN apt-get update && \
     wget \
     && rm -rf /var/lib/apt/lists/*
 
-ARG GLEWLWYD_VERSION=1.2.4
+ARG GLEWLWYD_VERSION=1.3.1
 ARG HOEL_VERSION=1.3
 ARG LIBJWT_VERSION=1.8.0
 ARG ORCANIA_VERSION=1.1.1
