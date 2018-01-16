@@ -23,5 +23,11 @@ then
     cd
 fi
 
+# Check database migration
+there_is_field=`mysql -h glewlwyd-oauth2-server-db -u root -ppassword --database=glewlwyd -e "DESC g_user" | grep gu_additional_property_value | wc -l`
+if [ "$there_is_field" = "0" ];then
+    mysql -h glewlwyd-oauth2-server-db -u root -ppassword -D glewlwyd -e "SOURCE glewlwyd.mariadb.migration-01.sql";
+fi
+
 # Run application
 /glewlwyd/src/glewlwyd --config-file=/var/glewlwyd/conf/glewlwyd.conf
