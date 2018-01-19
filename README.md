@@ -66,6 +66,8 @@ docker run --rm -it -v $PWD/keys:/var/glewlwyd/keys -p 4593:4593 rafaelhdr/glewl
 
 Keep the public key to verify signature. The private key are used to generate the token.
 
+For generate the keys, check [Volumes](#volumes).
+
 ### SHA key
 
 Edit the default configuration (check how at [Configuration file](#configuration-file)) changing `use_rsa = false`, `use_sha = false` and change your secret at `sha_secret = "secret"`. Run your instance mounting the configuration file folder.
@@ -84,7 +86,7 @@ An easy and free option is to use Let's Encrypt. Check the tutorial [Proxy with 
 
 # Volumes
 
-`/var/glewlwyd/conf` - Store glewdlwyd.conf file (and also, examples of MariaDB and SQLite config files).
+`/var/glewlwyd/conf` - Store glewdlwyd.conf file (and also, examples of MariaDB and SQLite config files). You can check [sqlite3](https://github.com/rafaelhdr/glewlwyd-oauth2-server/blob/master/sqlite3/quickstart/glewlwyd.sqlite3.conf) and [mariadb](https://github.com/rafaelhdr/glewlwyd-oauth2-server/blob/master/mariadb/quickstart/glewlwyd.mariadb.conf) conf files examples.
 
 `/var/glewlwyd/keys` - Store private and public key. These keys are generated on container creation. You can create by yourself with the following commands:
 
