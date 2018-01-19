@@ -5,8 +5,10 @@ language: bash
 services: docker
 
 env:
-  - VERSION=1.0 VARIANT=sqlite3 EXTENSION=quickstart LATEST=true
-  - VERSION=1.0 VARIANT=mariadb EXTENSION=quickstart
+  - VERSION=1.0 VARIANT=sqlite3 SRC_DIR=sqlite3/quickstart EXTENSION=quickstart LATEST=true
+  - VERSION=1.0 VARIANT=mariadb SRC_DIR=mariadb/quickstart EXTENSION=quickstart
+  - VERSION=1.0 VARIANT=alpine SRC_DIR=alpine/src
+  - VERSION=1.0 VARIANT=x86_64 SRC_DIR=alpine/x86_64
 
 before_install:
   - docker build -t rafaelhdr/glewlwyd-oauth2-server:base .
@@ -15,7 +17,7 @@ before_install:
 
 before_script:
   - image="rafaelhdr/glewlwyd-oauth2-server:${VERSION}-${VARIANT}${EXTENSION:+-$EXTENSION}"
-  - build_dir="${VARIANT}/${EXTENSION:+$EXTENSION/}."
+  - build_dir="${SRC_DIR}/."
 
 script:
   - travis_retry docker build -t "$image" ${build_dir}
