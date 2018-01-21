@@ -8,11 +8,11 @@ After creating the Quickstart, use as admin (username: *admin*, password: *passw
 
 ## Quickstart SQLite3
 
-Run `docker run --rm -it -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:1.0-sqlite3-quickstart` and access http://localhost:4593.
+Run `docker run --rm -it -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:1.2-sqlite3-quickstart` and access http://localhost:4593.
 
 If you want to persist SQLite database, mount volume `/var/cache/glewlwyd`, as below:
 
-`docker run -it -v $PWD/cache:/var/cache/glewlwyd -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:1.0-sqlite3-quickstart`
+`docker run -it -v $PWD/cache:/var/cache/glewlwyd -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:1.2-sqlite3-quickstart`
 
 ## Quickstart MariaDB
 
@@ -39,7 +39,7 @@ mkdir conf
 wget https://raw.githubusercontent.com/rafaelhdr/glewlwyd-oauth2-server/master/sqlite3/quickstart/glewlwyd.sqlite3.conf
 mv glewlwyd.sqlite3.conf conf/glewlwyd.conf
 # Edit your conf/glewlwyd.conf
-docker run --rm -it -v $PWD/conf:/var/glewlwyd/conf -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:1.0-sqlite3-quickstart
+docker run --rm -it -v $PWD/conf:/var/glewlwyd/conf -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:1.2-sqlite3-quickstart
 ```
 
 More about configuration at https://github.com/babelouest/glewlwyd#configuration.
@@ -61,7 +61,7 @@ By default, it generate RSA key at folder `/var/glewlwyd/keys/`.
 Keep default configuration and mount folder `/var/glewlwyd/keys/`.
 
 ```
-docker run --rm -it -v $PWD/keys:/var/glewlwyd/keys -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:1.0-sqlite3-quickstart
+docker run --rm -it -v $PWD/keys:/var/glewlwyd/keys -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:1.2-sqlite3-quickstart
 ```
 
 Keep the public key to verify signature. The private key are used to generate the token.
@@ -73,7 +73,7 @@ For generate the keys, check [Volumes](#volumes).
 Edit the default configuration (check how at [Configuration file](#configuration-file)) changing `use_rsa = false`, `use_sha = false` and change your secret at `sha_secret = "secret"`. Run your instance mounting the configuration file folder.
 
 ```
-docker run --rm -it -v $PWD/conf:/var/glewlwyd/conf -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:1.0-sqlite3-quickstart
+docker run --rm -it -v $PWD/conf:/var/glewlwyd/conf -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:1.2-sqlite3-quickstart
 ```
 
 Use the secret to verify signature.

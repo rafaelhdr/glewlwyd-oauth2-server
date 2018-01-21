@@ -25,4 +25,4 @@ if [ "$there_is_field" = "0" ];then
 fi
 
 # Run application
-/glewlwyd/src/glewlwyd --config-file=/var/glewlwyd/conf/glewlwyd.conf
+/usr/local/bin/glewlwyd --config-file=/var/glewlwyd/conf/glewlwyd.conf

@@ -84,15 +84,16 @@ RUN cd /opt && \
     mv glewlwyd-${GLEWLWYD_VERSION}/ /glewlwyd && \
     cd /glewlwyd/src && \
     make && \
-    make install
+    make install && \
 
-WORKDIR /glewlwyd
+# Clean
+    cp -r /glewlwyd/webapp /var/www && \
+    rm -rf /opt/* /glewlwyd
 
 # Configuration required for shared objects
 RUN ldconfig && \
     mkdir -p /var/glewlwyd/conf && \
     mkdir -p /var/glewlwyd/keys && \
-    ln -s /glewlwyd/webapp /var/www && \
     mkdir -p /var/cache/glewlwyd/
 
 COPY ["entrypoint.sh", "/"]

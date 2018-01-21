@@ -5,10 +5,10 @@ language: bash
 services: docker
 
 env:
-  - VERSION=1.1 VARIANT=sqlite3 SRC_DIR=sqlite3/quickstart EXTENSION=quickstart LATEST=true
-  - VERSION=1.1 VARIANT=mariadb SRC_DIR=mariadb/quickstart EXTENSION=quickstart
-  - VERSION=1.1 VARIANT=alpine SRC_DIR=alpine/src
-  - VERSION=1.1 VARIANT=x86_64 SRC_DIR=alpine/x86_64
+  - VERSION=1.2 VARIANT=sqlite3 SRC_DIR=sqlite3/quickstart EXTENSION=quickstart LATEST=true
+  - VERSION=1.2 VARIANT=mariadb SRC_DIR=mariadb/quickstart EXTENSION=quickstart
+  - VERSION=1.2 VARIANT=alpine SRC_DIR=alpine/src
+  - VERSION=1.2 VARIANT=x86_64 SRC_DIR=alpine/x86_64
 
 before_install:
   - docker build -t rafaelhdr/glewlwyd-oauth2-server:base .
