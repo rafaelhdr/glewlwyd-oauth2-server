@@ -18,5 +18,11 @@ then
     sqlite3 $sqlitefile < /var/glewlwyd/scriptssql/webapp.init.sql
 fi
 
+# Check database migration
+there_is_field=`sqlite3 glewlwyd.db "PRAGMA table_info(g_user);" | grep gu_additional_property_value | wc -l`
+if [ "$there_is_field" = "0" ];then
+    sqlite3 $sqlitefile < /var/glewlwyd/scriptssql/glewlwyd.sqlite3.migration-01.sql
+fi
+
 # Run application
 /glewlwyd/src/glewlwyd --config-file=/var/glewlwyd/conf/glewlwyd.conf
