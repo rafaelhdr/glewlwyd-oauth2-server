@@ -12,7 +12,8 @@ fi
 
 # Check if mysql database exist
 /wait-for-it.sh --timeout=60 glewlwyd-oauth2-server-db:3306 -- \
-                mysqlshow -h glewlwyd-oauth2-server-db -u root -ppassword "glewlwyd"
+                mysqlshow -h glewlwyd-oauth2-server-db -u root -ppassword "glewlwyd" && \
+    mysql -h glewlwyd-oauth2-server-db -u root -ppassword -D glewlwyd "SELECT * FROM glewlwyd.g_user"
 
 # If does not exist, raise error. So, we try to create database
 if [ ! "$?" == "0" ]
