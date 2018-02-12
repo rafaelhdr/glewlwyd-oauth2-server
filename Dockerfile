@@ -2,32 +2,29 @@ FROM debian:stretch
 
 # Install required packages
 RUN apt-get update && \
+		apt-get upgrade -y && \
     apt-get install -y \
     autoconf \
-    git \
-    libcurl4-gnutls-dev \
-    libconfig-dev \
+		automake \
+		make \
+		pkg-config \
     libjansson-dev \
-    libgnutls28-dev \
-    libssl-dev \
-    libldap2-dev \
-    libmicrohttpd-dev \
-    libmariadbclient-dev \
-    libsqlite3-dev \
+		libssl-dev \
+		libcurl3 \
+    libconfig9 \
+		libcurl3-gnutls \
+    libgnutls30 \
+		libgcrypt20 \
+    libmicrohttpd12 \
+    libsqlite3-0 \
+		libmariadbclient18 \
     libtool \
-    make \
-    mariadb-client \
-    sqlite3 \
-    uuid-dev \
-    wget \
-    && rm -rf /var/lib/apt/lists/*
+    uuid \
+    wget && \
+    apt-get clean
 
-ARG GLEWLWYD_VERSION=1.3.1
-ARG HOEL_VERSION=1.3
-ARG LIBJWT_VERSION=1.8.0
-ARG ORCANIA_VERSION=1.1.1
-ARG ULFIUS_VERSION=2.2.2
-ARG YDER_VERSION=1.1
+ARG GLEWLWYD_VERSION=1.3.2-b.5
+ARG LIBJWT_VERSION=1.9.0
 
 # libtool and autoconf may be required, install them with 'sudo apt-get install libtool autoconf'
 RUN cd /opt && \
@@ -40,61 +37,16 @@ RUN cd /opt && \
     make && \
     make install && \
 
-# Install Orcania
+# Download and install Glewlwyd package
     cd /opt && \
-    wget https://github.com/babelouest/orcania/archive/${ORCANIA_VERSION}.tar.gz && \
-    tar -zxvf ${ORCANIA_VERSION}.tar.gz && \
-    rm ${ORCANIA_VERSION}.tar.gz && \
-    cd orcania-${ORCANIA_VERSION}/ && \
-    make && \
-    make install && \
-
-# Install Yder
-    cd /opt && \
-    wget https://github.com/babelouest/yder/archive/${YDER_VERSION}.tar.gz && \
-    tar -zxvf ${YDER_VERSION}.tar.gz && \
-    rm ${YDER_VERSION}.tar.gz && \
-    cd yder-${YDER_VERSION}/src/ && \
-    make && \
-    make install && \
-
-# Install Ulfius
-    cd /opt && \
-    wget https://github.com/babelouest/ulfius/archive/v${ULFIUS_VERSION}.tar.gz && \
-    tar -zxvf v${ULFIUS_VERSION}.tar.gz && \
-    rm v${ULFIUS_VERSION}.tar.gz && \
-    cd ulfius-${ULFIUS_VERSION}/src/ && \
-    make && \
-    make install && \
-
-# Install Hoel
-    cd /opt && \
-    wget https://github.com/babelouest/hoel/archive/v${HOEL_VERSION}.tar.gz && \
-    tar -zxvf v${HOEL_VERSION}.tar.gz && \
-    rm v${HOEL_VERSION}.tar.gz && \
-    cd hoel-${HOEL_VERSION}/src/ && \
-    make && \
-    make install && \
-
-# Install Glewlwyd
-    cd / && \
-    wget https://github.com/babelouest/glewlwyd/archive/v${GLEWLWYD_VERSION}.tar.gz && \
-    tar -zxvf v${GLEWLWYD_VERSION}.tar.gz && \
-    rm v${GLEWLWYD_VERSION}.tar.gz && \
-    mv glewlwyd-${GLEWLWYD_VERSION}/ /glewlwyd && \
-    cd /glewlwyd/src && \
-    make && \
-    make install && \
-
-# Clean
-    cp -r /glewlwyd/webapp /var/www && \
-    rm -rf /opt/* /glewlwyd
-
-# Configuration required for shared objects
-RUN ldconfig && \
-    mkdir -p /var/glewlwyd/conf && \
-    mkdir -p /var/glewlwyd/keys && \
-    mkdir -p /var/cache/glewlwyd/
+    wget https://github.com/babelouest/glewlwyd/releases/download/v${GLEWLWYD_VERSION}/glewlwyd-full_${GLEWLWYD_VERSION}_Debian-stretch-x86_64.tar.gz && \
+    tar -xf glewlwyd-full_${GLEWLWYD_VERSION}_Debian-stretch-x86_64.tar.gz && \
+    rm glewlwyd-full_${GLEWLWYD_VERSION}_Debian-stretch-x86_64.tar.gz && \
+		dpkg -i liborcania_*.deb && \
+		dpkg -i libyder_*.deb && \
+		dpkg -i libulfius_*.deb && \
+		dpkg -i libhoel_*.deb && \
+		dpkg -i glewlwyd_*.deb
 
 COPY ["entrypoint.sh", "/"]
 

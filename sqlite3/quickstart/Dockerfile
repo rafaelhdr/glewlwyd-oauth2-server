@@ -1,5 +1,9 @@
 FROM rafaelhdr/glewlwyd-oauth2-server:base
 
+RUN apt-get update && \
+    apt-get install -y \
+		sqlite3
+
 RUN mkdir -p /var/cache/scriptssql
 
 COPY ["entrypoint.sh", "/"]
