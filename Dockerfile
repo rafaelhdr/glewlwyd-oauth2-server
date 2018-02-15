@@ -23,7 +23,7 @@ RUN apt-get update && \
     wget && \
     apt-get clean
 
-ARG GLEWLWYD_VERSION=1.3.2-b.5
+ARG GLEWLWYD_VERSION=1.3.2-b.6
 ARG LIBJWT_VERSION=1.9.0
 
 # libtool and autoconf may be required, install them with 'sudo apt-get install libtool autoconf'
@@ -39,9 +39,9 @@ RUN cd /opt && \
 
 # Download and install Glewlwyd package
     cd /opt && \
-    wget https://github.com/babelouest/glewlwyd/releases/download/v${GLEWLWYD_VERSION}/glewlwyd-full_${GLEWLWYD_VERSION}_Debian-stretch-x86_64.tar.gz && \
-    tar -xf glewlwyd-full_${GLEWLWYD_VERSION}_Debian-stretch-x86_64.tar.gz && \
-    rm glewlwyd-full_${GLEWLWYD_VERSION}_Debian-stretch-x86_64.tar.gz && \
+    wget https://github.com/babelouest/glewlwyd/releases/download/v${GLEWLWYD_VERSION}/glewlwyd-full_${GLEWLWYD_VERSION}_Debian_stretch_x86_64.tar.gz && \
+    tar -xf glewlwyd-full_${GLEWLWYD_VERSION}_Debian_stretch_x86_64.tar.gz && \
+    rm glewlwyd-full_${GLEWLWYD_VERSION}_Debian_stretch_x86_64.tar.gz && \
 		dpkg -i liborcania_*.deb && \
 		dpkg -i libyder_*.deb && \
 		dpkg -i libulfius_*.deb && \
