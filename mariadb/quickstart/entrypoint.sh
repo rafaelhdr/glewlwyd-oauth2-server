@@ -33,4 +33,4 @@ if [ "$there_is_field" = "0" ];then
 fi
 
 # Run application
-/usr/local/bin/glewlwyd --config-file=/var/glewlwyd/conf/glewlwyd.conf
+/usr/bin/glewlwyd --config-file=/var/glewlwyd/conf/glewlwyd.conf
