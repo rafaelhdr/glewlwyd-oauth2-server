@@ -11,3 +11,15 @@ fi
 
 # Run application
 /usr/bin/glewlwyd --config-file=/var/glewlwyd/conf/glewlwyd.conf
+
+# Error code
+status_code=$?
+if [ "$status_code" != "0" ]
+then
+    if [ "$status_code" = "2" ]
+    then
+        echo "Error on database connection!"
+    else
+        echo "Error on glewlwyd!"
+    fi
+fi
