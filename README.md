@@ -4,26 +4,14 @@ This Docker image is based on [Glewlwyd Oauth 2 authentication server](https://g
 
 ## Quickstart
 
-After creating the Quickstart, use as admin (username: *admin*, password: *password*).
+> Quickstart is not supposed to be used in production environments. It is only for testing.
 
-### Quickstart SQLite3
-
-Run `docker run --rm -it -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:1.2-sqlite3-quickstart` and access http://localhost:4593.
-
-If you want to persist SQLite database, mount volume `/var/cache/glewlwyd`, as below:
-
-`docker run -it -v $PWD/cache:/var/cache/glewlwyd -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:1.2-sqlite3-quickstart`
-
-### Quickstart MariaDB
-
-[Install Docker Compose](https://docs.docker.com/compose/install/). Run:
-
-```sh
-wget https://raw.githubusercontent.com/rafaelhdr/glewlwyd-oauth2-server/master/mariadb/quickstart/docker-compose.yml
-docker-compose up
+```shell
+# Run the following
+docker run --rm -it -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:2.0-quickstart
 ```
 
-Access [http://localhost:4593](http://localhost:4593).
+After creating the Quickstart, use as admin (username: *admin*, password: *password*) at [http://localhost:4593](http://localhost:4593).
 
 ## Installation
 
