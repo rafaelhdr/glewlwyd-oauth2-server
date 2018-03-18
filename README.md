@@ -62,7 +62,7 @@ database =
 
 Create and initialise a Mariadb/Mysql/LDAP and connect in the same network of glewlwyd service (for example, with docker-compose).
 
-For database/ldap initialisation, check [glewlwyd repository](https://github.com/babelouest/glewlwyd/blob/master/INSTALL.md#data-storage-backend-initialisation).
+For database/ldap initialisation, check [glewlwyd repository](https://github.com/babelouest/glewlwyd/blob/master/docs/INSTALL.md#data-storage-backend-initialisation).
 
 When creating the configuration file, fill with the database information, for example:
 
@@ -98,7 +98,7 @@ Edit your [configuration file](#configuration-file) (`glewlwyd.conf`) with the s
 Create the keys and mount at the container.
 
 ```shell
-# Create keys following https://github.com/babelouest/glewlwyd/blob/master/INSTALL.md#rsa-privatepublic-key-creation instructions
+# Create keys following https://github.com/babelouest/glewlwyd/blob/master/docs/INSTALL.md#rsa-privatepublic-key-creation instructions
 docker run \
     -v /path/to/keys:/var/glewlwyd/keys \
     rafaelhdr/glewlwyd-oauth2-server:2.0-alpine
@@ -129,6 +129,7 @@ docker run -it \
     -v $PWD/conf:/var/glewlwyd/conf \
     -p 4593:4593 \
     rafaelhdr/glewlwyd-oauth2-server:2.0-alpine
+    # or rafaelhdr/glewlwyd-oauth2-server:2.0-debian
 ```
 
 > You may also need to mount more volumes for sqlite (`-v $PWD/cache:/var/cache/glewlwyd`) and for private/public keys (`-v $PWD/keys:/var/glewlwyd/keys`).
