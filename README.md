@@ -17,12 +17,12 @@ After creating the Quickstart, use as admin (username: *admin*, password: *passw
 
 You will need the following:
 
-1. Set database and/or LDAP
+1. Set database
 1. JWT configuration
 1. Configuration file
 1. Start Glewlwyd
 
-### Set database or LDAP
+### Set database
 
 #### Sqlite3
 
@@ -46,9 +46,9 @@ database =
 };
 ```
 
-#### Mariadb/Mysql or LDAP
+#### Mariadb/Mysql
 
-Create and initialise a Mariadb/Mysql/LDAP and connect in the same network of glewlwyd service (for example, with docker-compose).
+Create and initialise a Mariadb/Mysql and connect in the same network of glewlwyd service (for example, with docker-compose).
 
 For database/ldap initialisation, check [glewlwyd repository](https://github.com/babelouest/glewlwyd/blob/master/docs/INSTALL.md#data-storage-backend-initialisation).
 
@@ -75,7 +75,41 @@ authentication =
 
 ### JWT configuration
 
-You can choose between SHA, RSA and ECDSA algorithms to sign the tokens.
+You can choose between SHA, RSA and ECDSA algorithms to sign the tokens. You can also choose between 256, 384 or 512 bits for the key size, as mentioned in the configuration file:
+
+```conf
+
+# jwt parameters
+jwt =
+{
+   # key size for algorithms, values available are 256, 384 or 512, default 512
+   key_size = 512
+   
+   # Use RSA algorithm to sign tokens (asymetric)
+   use_rsa = true
+   
+   # path to the key (private) certificate file to sign tokens
+   rsa_key_file = "/usr/etc/glewlwyd/private-rsa.key"
+   
+   # path to the public certificate file to validate signatures
+   rsa_pub_file = "/usr/etc/glewlwyd/public-rsa.pem"
+   
+   # Use ECDSA algorithm to sign tokens (asymetric)
+   use_ecdsa = false
+   
+   # path to the key (private) certificate file to sign tokens
+   ecdsa_key_file = "/usr/etc/glewlwyd/private-ecdsa.key"
+   
+   # path to the public certificate file to validate signatures
+   ecdsa_pub_file = "/usr/etc/glewlwyd/public-ecdsa.pem"
+   
+   # Use SHA algorithm to sign tokens (symetric)
+   use_sha = false
+   
+   # characters used to generate and validate the token
+   sha_secret = "secret"
+}
+```
 
 #### SHA
 
@@ -110,7 +144,7 @@ mv glewlwyd.sqlite3.conf conf/glewlwyd.conf
 
 ### Start Glewlwyd
 
-Run your glewlwyd:
+Run Glewlwyd:
 
 ```shell
 docker run -it \
