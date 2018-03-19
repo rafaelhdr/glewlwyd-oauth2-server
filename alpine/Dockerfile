@@ -23,7 +23,7 @@ RUN apk add --no-cache \
     cmake \
     bash
 
-ARG GLEWLWYD_VERSION=1.3.2
+ARG GLEWLWYD_VERSION
 ARG LIBJWT_VERSION=1.9.0
 
 # libtool and autoconf may be required, install them with 'sudo apt-get install libtool autoconf'

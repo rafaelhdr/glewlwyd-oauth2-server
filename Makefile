@@ -6,16 +6,13 @@ check:
 	if [ -z ${VERSION} ];then echo "Set VERSION environment variable" exit 1;fi
 
 build-alpine:
-	( cd alpine && \
-	docker build -t rafaelhdr/glewlwyd-oauth2-server:${VERSION}-alpine .)
+	docker build -t rafaelhdr/glewlwyd-oauth2-server:${VERSION}-alpine --build-arg GLEWLWYD_VERSION=${VERSION} alpine
 
 build-debian:
-	( cd debian && \
-	docker build -t rafaelhdr/glewlwyd-oauth2-server:${VERSION}-debian .)
+	docker build -t rafaelhdr/glewlwyd-oauth2-server:${VERSION}-debian --build-arg GLEWLWYD_VERSION=${VERSION} debian
 
 build-quickstart:
-	( cd quickstart && \
-	docker build -t rafaelhdr/glewlwyd-oauth2-server:${VERSION}-quickstart .)
+	docker build -t rafaelhdr/glewlwyd-oauth2-server:${VERSION}-quickstart --build-arg GLEWLWYD_VERSION=${VERSION} quickstart
 
 push: push-alpine push-debian push-quickstart
 
