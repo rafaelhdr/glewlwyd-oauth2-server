@@ -162,7 +162,7 @@ If the command runned successfully, you can access at [http://localhost:4593](ht
 
 OAuth 2 specifies that a secured connection is mandatory.
 
-An easy and free option is to use Let's Encrypt. Check the tutorial [Proxy with Caddy Server](https://github.com/rafaelhdr/glewlwyd-oauth2-server/blob/master/tutorials/proxy-with-caddy-server.md).
+An easy and free option is to use Glewlwyd begind a HTTPS proxy with a Let's Encrypt certificate. Check the tutorial [Proxy with Caddy Server](https://github.com/rafaelhdr/glewlwyd-oauth2-server/blob/master/tutorials/proxy-with-caddy-server.md).
 
 ## Volumes
 
