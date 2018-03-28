@@ -8,7 +8,7 @@ This Docker image is based on [Glewlwyd Oauth 2 authentication server](https://g
 
 ```shell
 # Run the following
-docker run --rm -it -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:2.0-quickstart
+docker run --rm -it -p 4593:4593 rafaelhdr/glewlwyd-oauth2-server:quickstart
 ```
 
 After creating the Quickstart, use as admin (username: *admin*, password: *password*) at [http://localhost:4593](http://localhost:4593).
@@ -32,7 +32,7 @@ Create and initialise a sqlite database and mount it at the container (recommend
 # Create your sqlite file at /path/to/cache/glewlwyd.db
 docker run -it \
     -v /path/to/cache:/var/cache/glewlwyd \
-    rafaelhdr/glewlwyd-oauth2-server:2.0-alpine
+    rafaelhdr/glewlwyd-oauth2-server
 ```
 
 When creating the configuration file, fill with the database information, for example:
@@ -123,7 +123,7 @@ Create the keys and mount at the container.
 # Create keys following https://github.com/babelouest/glewlwyd/blob/master/docs/INSTALL.md#rsa-privatepublic-key-creation instructions
 docker run \
     -v /path/to/keys:/var/glewlwyd/keys \
-    rafaelhdr/glewlwyd-oauth2-server:2.0-alpine
+    rafaelhdr/glewlwyd-oauth2-server
 ```
 
 And then, fill the information at the configuration file.
@@ -150,8 +150,9 @@ Run Glewlwyd:
 docker run -it \
     -v $PWD/conf:/var/glewlwyd/conf \
     -p 4593:4593 \
-    rafaelhdr/glewlwyd-oauth2-server:2.0-alpine
-    # or rafaelhdr/glewlwyd-oauth2-server:2.0-debian
+    rafaelhdr/glewlwyd-oauth2-server
+    # you can choose between alpine and debian tags. Check available tags at:
+    # https://hub.docker.com/r/rafaelhdr/glewlwyd-oauth2-server/tags/
 ```
 
 > You may also need to mount more volumes for sqlite (`-v $PWD/cache:/var/cache/glewlwyd`) and for private/public keys (`-v $PWD/keys:/var/glewlwyd/keys`).
