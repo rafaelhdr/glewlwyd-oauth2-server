@@ -5,6 +5,7 @@ This Docker image is based on [Glewlwyd Oauth 2 authentication server](https://g
 ## Quickstart
 
 > Quickstart is not supposed to be used in production environments. It is only for testing.
+> The JWT configuration uses sha algorithm with the secret `secret` hard coded. So the tokens generated are **_NOT SAFE_**!
 
 ```shell
 # Run the following
@@ -94,7 +95,7 @@ If using database authentication, users will be stored in the database.
 
 If using LDAP authentication, users will be stored in a LDAP server.
 
-LDAP and Database authentication are possible at the same time. If a user is present in both t, the LDAP back end will be checked first.
+LDAP and Database authentication are possible at the same time. If a user is present in both, the LDAP back end will be checked first.
 
 ### JWT configuration
 
