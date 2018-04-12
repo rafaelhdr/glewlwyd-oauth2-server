@@ -2,22 +2,26 @@ FROM debian:stretch
 
 # Install required packages
 RUN apt-get update && apt-get install -y \
+    # runtime libraries
+    libgnutls30 \
+    libssl1.0.2 \
+    libjansson4 \
+    libmicrohttpd12 \
+    libcurl3-gnutls \
+    uuid \
+    libldap-2.4-2 \
+    libmariadbclient18 \
+    libsqlite3-0 \
+    libconfig9 \
+    sqlite3 \
+    # dev libraries and tools to build libjwt
     autoconf \
-    libmicrohttpd-dev \
-    libjansson-dev \
-    libcurl4-gnutls-dev \
-    uuid-dev \
-    libldap2-dev \
-    libmariadbclient-dev \
-    libsqlite3-dev \
-    libconfig-dev \
-    libgnutls28-dev \
-    libssl-dev \
     libtool \
     make \
-    sqlite3 \
+    libgnutls28-dev \
+    libssl-dev \
     wget \
- && rm -rf /var/lib/apt/lists/*
+    libjansson-dev
 
 ARG GLEWLWYD_VERSION
 ARG LIBJWT_VERSION=1.9.0
@@ -32,6 +36,8 @@ RUN cd /opt && \
     ./configure --without-openssl && \
     make && \
     make install && \
+    cd .. && \
+    rm -rf libjwt-${LIBJWT_VERSION}/ && \
     # Download and install Glewlwyd package
     cd /opt && \
     wget https://github.com/babelouest/glewlwyd/releases/download/v${GLEWLWYD_VERSION}/glewlwyd-full_${GLEWLWYD_VERSION}_Debian_stretch_x86_64.tar.gz && \
@@ -43,7 +49,18 @@ RUN cd /opt && \
     dpkg -i libhoel_*.deb && \
     dpkg -i glewlwyd_*.deb && \
     rm -rf * && \
-    ldconfig
+    ldconfig && \
+    # Clean dev packages
+    apt-get update && apt-get purge -y \
+    autoconf \
+    libtool \
+    make \
+    libgnutls28-dev \
+    libssl-dev \
+    wget \
+    libjansson-dev && \
+    apt-get autoremove --purge -y && \
+		apt-get clean && rm -rf /var/lib/apt/lists/* 
 
 COPY ["entrypoint.sh", "quickstart.sh", "sample.conf", "sample.sqlite", "/"]
 

@@ -2,6 +2,7 @@ FROM alpine:3.7
 
 # Install required packages
 RUN apk add --no-cache \
+    # development packages to be removed after build
     tar \
     autoconf \
     automake \
@@ -11,8 +12,12 @@ RUN apk add --no-cache \
     gcc \
     g++ \
     util-linux-dev \
+    # runtime libraries
+    libuuid \
     libconfig \
     gnutls-dev \
+    gnutls \
+    jansson \
     libgcrypt \
     libmicrohttpd \
     sqlite-libs \
@@ -54,7 +59,17 @@ RUN mkdir /opt && \
     mv glewlwyd_*/bin/glewlwyd /usr/bin && \
     mkdir -p /usr/share/glewlwyd/ && \
     mv glewlwyd_*/share/glewlwyd/webapp/ /usr/share/glewlwyd/ && \
-    rm -rf *
+    rm -rf * && \
+    apk del \
+    tar \
+    autoconf \
+    automake \
+    libcurl \
+    jansson-dev \
+    make \
+    gcc \
+    g++ \
+    util-linux-dev
 
 COPY ["entrypoint.sh", "/"]
 
