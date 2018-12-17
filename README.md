@@ -181,6 +181,16 @@ An easy and free option is to use Glewlwyd behind a HTTPS proxy with a Let's Enc
 * `/var/glewlwyd/conf` - Store glewdlwyd.conf file
 * `/var/glewlwyd/keys` - Store private and public key
 
+## Customize webfront
+
+Copy custom webfront files to `/usr/share/glewlwyd/webapp/`.
+
+```Dockerfile
+FROM rafaelhdr/glewlwyd-oauth2-server:quickstart
+
+COPY custom-index.html /usr/share/glewlwyd/webapp/index.html
+```
+
 ## Tutorials
 
 * [Proxy with Caddy Server](https://github.com/rafaelhdr/glewlwyd-oauth2-server/blob/master/tutorials/proxy-with-caddy-server.md)
