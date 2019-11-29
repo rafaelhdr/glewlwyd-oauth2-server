@@ -1,3 +1,7 @@
+# Deprecated
+
+[Check the original project](https://github.com/babelouest/glewlwyd)
+
 # Docker image for Glewlwyd Oauth 2 authentication server
 
 This Docker image is based on [Glewlwyd Oauth 2 authentication server](https://github.com/babelouest/glewlwyd).
